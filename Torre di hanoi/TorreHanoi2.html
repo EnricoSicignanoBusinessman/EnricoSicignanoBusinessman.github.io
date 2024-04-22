@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="it">
+	<head>
+		<title>La Torre di Hanoi</title>
+		<link rel="icon" type="image/png" href="favicon.png"> <!-- Inserimento della favicon vicino al titolo -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">	<!-- Integrazione CSS Bootstrap -->
+		<link rel="stylesheet" href="mystyle.css" > <!-- Inserire al posto di mystyle.css il nome del file del proprio CSS -->
+		<style>
+			.disk {
+				height: 30px;
+			}
+			
+			.sfondo {
+				background-image:url("sfondo4.gif");
+				background-repeat:no-repeat;
+				background-position: center;
+				background-size: cover;
+			}
+			
+			.btn-primary {
+				background-color:#bf24d4;
+				border-color:#f011d2;
+			}
+		</style>
+	</head>
+	<body class="sfondo">
+		<header>
+			<!-- Navbar: --> 
+			<nav class="navbar navbar-dark bg-dark">
+			  <div class="container-fluid">
+				<a class="navbar-brand" href="#"></a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+				  <span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+				  <div class="offcanvas-header">
+					<h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Chiudi   --></h5>
+					<button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+				  </div>
+				  <div class="offcanvas-body">
+					<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+					  <li class="nav-item">
+						<a class="nav-link active" aria-current="page" href="GiocoHanoi.html">Home</a>
+					  </li>
+					  <li class="nav-item">
+						<a class="nav-link active" aria-current="page" href="tutorial.html">Tutorial</a>
+					  </li>
+					  <li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						  Vai al gioco:
+						</a>
+						<ul class="dropdown-menu dropdown-menu-dark">
+						  <li><a class="dropdown-item" href="TorreHanoi.html">Easy</a></li>
+						  <li><a class="dropdown-item" href="TorreHanoi2.html">Medium</a></li>
+						  <li><a class="dropdown-item" href="TorreHanoi3.html">Hard</a></li>
+						</ul>
+					  </li>
+					</ul>
+				  </div>
+				</div>
+			  </div>
+			</nav>
+		
+			<!-- Intestazione -->
+			<center><h1 style="color:purple; margin:1.5%"><b>Medium</b></h1></center>
+		</header>
+		<main>
+			<!-- Corpo -->
+			<div class="container">
+				<center> <div class="row" style="margin:2%; height:200px;">
+					<div id="pole1" class="col-4">
+					</div>
+					<div id="pole2" class="col-4">
+					</div>
+					<div id="pole3" class="col-4">
+					</div>
+				</div> </center>
+				<div class="row" style="margin-top:2%;">
+					<div class="col-4">
+						<center><button id="btn1" class="btn btn-primary" onclick="actionPole(1)">Prendi</button></center>
+					</div>
+					<div class="col-4">
+						<center><button id="btn2" class="btn btn-primary" onclick="actionPole(2)">Prendi</button></center>
+					</div>
+					<div class="col-4">
+						<center><button id="btn3" class="btn btn-primary" onclick="actionPole(3)">Prendi</button></center>
+					</div>
+				</div>
+				<div class="row" style="margin:2%">
+					<div class="col-4"></div>
+					<center> <div id="myHand" class="col-4"></div> </center>
+					<div class="col-4"></div>
+				</div>
+			</div>
+			<div>
+				<p style="text-align:center; margin:1%"> In quanti passaggisei sei riuscito a spostare la torre?  --> In  <b><span id="contatore"> </span></b>  passaggi</p>
+			</div>
+			<center> <a style="text-align:center; margin:1%" type="button" href="TorreHanoi2.html" class="btn btn-primary">Provaci dinuovo!</a> </center>
+			
+		</main>
+		<footer style="margin:2%">
+			<!-- Pedice -->
+			<center style="color:purple"><p>&copy; by Sicignano Enrico</p></center>
+		</footer>
+	</body>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> <!-- Integrazione Javascript Bootstrap -->
+	<script>
+		var pole1 = [1,2,3,4,5,6];
+		var pole2 = [];
+		var pole3 = [];
+		var mano = 0;
+		var contatore = 0;
+		
+		<!-- Disegna la scena: -->
+		drawScene();
+		
+		function drawScene(){
+			drawPoles();
+			drawHand();
+			checkButtons();
+		}
+		
+		<!-- Disegna i pali colorati -->
+		function drawPoles(){
+			for(let i=1;i<4;i++){
+				drawPole(getPole(i), getDivPole(i));
+			}
+		}
+		
+		function getDivPole(n){
+			return document.getElementById("pole"+n);
+		}
+		
+		function drawPole(pole, div){
+			<!-- Cancelare tutto l'HTML e disegna il disco passando: 1 - 2 -3 - 4 "trovando il colore e larghezza" -->
+			div.innerHTML = "";
+			for(let i=0; i<pole.length; i++){
+				div.innerHTML+=drawDisk(pole[i]);
+			}
+		}
+		
+		function checkButtons(){
+			for(let i=1;i<4;i++)
+				checkButton(i);
+				
+				document.getElementById("contatore").innerHTML = contatore;
+		}	
+
+		function getPole(n){
+			switch(n){
+				case 1: return pole1;
+				case 2: return pole2;
+				case 3: return pole3;
+			}
+		}
+		
+		<!-- Comandi prendi/metti dei bottoni: -->
+		function checkButton(n){
+			let button = document.getElementById("btn" + n);
+			let pole = getPole(n);
+			if(mano==0){
+				<!-- Se il pole è vuoto il bottone è disabilitato -->
+				button.innerText = "prendi qui";
+				button.disabled = pole.length == 0;
+			} else {
+				<!-- Se il pole è maggiore di zero? si / no -->
+				button.innerText = "metti qui";				
+				button.disabled = pole.length > 0 ? pole[0] < mano : false;			
+			}
+		}
+		
+		<!-- Metto l'elemento nella mano: -->
+		function drawHand(){
+			let handDiv = document.getElementById("myHand");
+			handDiv.innerHTML = drawDisk(mano);
+		}
+		
+		function actionPole(n){
+			if(mano==0){
+				mano = getPole(n).shift();
+			} else {
+				getPole(n).unshift(mano);
+				mano = 0;
+				contatore = (contatore + 1);
+			}
+			drawScene();
+		}
+		
+		function getColor(dimension){
+			let color = "#f691fa";
+			switch(dimension){
+				case 1: color = "#fc53e5"; break;
+				case 2: color = "#d406b8"; break;		
+				case 3: color = "#b80fa1"; break;
+				case 4: color = "#940781"; break;
+				case 5: color = "#6b035d"; break;
+			}
+			return color;
+		}
+		
+		<!-- Modifica la larghezza dei rettangoli: -->
+		function drawDisk(dimension){
+			let color = getColor(dimension);
+			return '<div class="disk" style="background-color:'+color+'; width:'+dimension*10+'%;"></div>';
+		}
+	</script>
+</html>

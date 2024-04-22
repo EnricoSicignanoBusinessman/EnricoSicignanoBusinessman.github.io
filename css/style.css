@@ -140,7 +140,7 @@ h1, h2, h3, h4, h5, h6 {
   text-transform: uppercase;
   padding: 25px 0px;
 }
-/**
+
 .btn-submit {
   background: #FFD34E;
   border: 0px;
@@ -341,7 +341,7 @@ h3.txt-tl {
 }
 
 a, a:hover {
-  color: #FFD34E;
+  color: black;
 }
 
 .cont-title {
@@ -371,6 +371,20 @@ a, a:hover {
 }
 
 .contact-icon-container {
+  position: absolute;
+  top: -38px;
+  right: 0;
+  padding-right: 20px;
+  font-size: 320px;
+  color: #555;
+  line-height: 300px;
+  -ms-transform: rotate(20deg);
+  -moz-transform: rotate(20deg);
+  -webkit-transform: rotate(20deg);
+  transform: rotate(20deg);
+}
+
+.mywork-icon-container {
   position: absolute;
   top: -38px;
   right: 0;
