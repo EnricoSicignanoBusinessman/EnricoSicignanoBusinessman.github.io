@@ -10,6 +10,9 @@ body {
   font-family: 'Open Sans', sans-serif;
   overflow-x: hidden;
 }
+.immagine-arrotondata {
+    border-radius: 50%; /* Arrotonda tutti i bordi dell'immagine */
+}
 
 ol, ul {
   list-style: none;
