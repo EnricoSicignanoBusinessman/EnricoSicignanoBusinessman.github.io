@@ -13,9 +13,31 @@
   <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="css/animate.css">
   <link rel="stylesheet" type="text/css" href="css/style.css">
+
   
   <link rel="icon" href="logoES2.png" type="image/png">
-  
+  <style>
+        .containerr {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .card {
+            width: 18rem;
+            margin: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .card-img-top {
+            width: 100%;
+            border-bottom: 1px solid #ccc;
+        }
+        .card-body {
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
@@ -33,7 +55,6 @@
                 <li><a href="#portfolio">Portfolio</a></li>
 				<li><a href="#MyWork">My work</a></li>
                 <li><a href="#contact">Contatti</a></li>
-				<li><a href="index_en.html">en</a></li>
               </ul>
             </div>
           </div>
@@ -89,7 +110,7 @@
              <i class="fa fa-graduation-cap" aria-hidden="true"></i>
             </div>
             <div class="icon-text">
-              <h3 class="txt-tl">Attestati</h3>
+              <h3 class="txt-tl">Competenze</h3>
               <p class="txt-para">Diploma I.T.I.S. "Informatica-Telecomunicazione" </p>
 			  <p class="txt-para">Attestato "PON" di making e progettazione in 3D</p>
 			  <p class="txt-para">Attestato di conoscenze nell'ambito del marketing e business</p>
@@ -102,22 +123,7 @@
       </div>
     </div>
   </section>
-  <!---->
-  <section class="section-padding parallax bg-image-2 section wow fadeIn delay-08s" id="cta-2">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-8">
-          <div class="cta-txt">
-            <h3>Parlo un po di me...</h3>
-            <p>Scoprirai cosa mi piace fare, i miei obiettivi quali sono, e quello che pratico!</p>
-          </div>
-        </div>
-        
-      </div>
-    </div>
-  </section>
-  <!---->
-  <!---->
+  
   <section class="section-padding wow fadeInUp delay-02s" id="portfolio">
     <div class="container">
       <div class="row">
@@ -184,22 +190,30 @@
 	<section class="section-padding wow fadeInUp delay-02s"  style="background-color:#f8f8f8" id="MyWork">
 				<div class="container">
 					<div class="row">
-						<div class="col-6">
+						<div class="col-4">
 						  <div class="section-title">
 							<h2 class="head-title black">My work</h2>
 							<hr class="botm-line">
-							<p class="sec-para black">Esempio di un mio lavoro!</p>
+							<p class="sec-para black">Clicca sulle foto se vuoi provare i miei giochi!</p>
 						  </div>
 						</div>
-						<div class="col-6">
-							<div style="text-align:center">
-								<!-- icon gamepad -->
-								<a href="Torre di hanoi/GiocoHanoi.html"><i class="fa fa-gamepad" ></i></a>
-								<!-- heading text-->
-								<h4 >Gioco Hanoi</h4>
-								<p>Questo è il mio gioco di HANOI !</p>
-								<p>se vuoi provarlo clicca qui sopra sul logo GamePad!</p>
-							</div>
+					</div>
+				</div>
+				<div class="containerr">
+					<div class="card">
+						<a href="Torre di hanoi/GiocoHanoi.html">
+							<img src="Torre di hanoi/imgPiccola1.png" style="width:100%; height:80%" class="card-img-top">
+						</a>
+						<div class="card-body">
+							<p><b>Torre di Hanoi</b></p>
+						</div>
+					</div>
+					<div class="card">
+						<a href="Gioco HTML percorso ostacoli/index.html">
+							<img src="img/FotoGioco.png" style="width:100%; height:80%" class="card-img-top">
+						</a>
+						<div class="card-body">
+							<p><b>The red cube</b></p>
 						</div>
 					</div>
 				</div>
@@ -216,7 +230,7 @@
           </div>
         </div>
           <div class="col-md-5 col-sm-6">
-            <h3 class="cont-title">Trovami con:</h3>
+            <h3 class="cont-title">Mi trovi qui:</h3>
             <div class="location-info">
               <p class="white"><span aria-hidden="true" style="color:#FFD34E" class="fa fa-map-marker"></span><a href="https://www.google.com/maps/dir//40.7460105,15.4858467/@40.7460017,15.4849591,19z/data=!4m2!4m1!3e0?hl=it&entry=ttu">Via Fontana degli Angeli "85054" Italy</a></p>
               <p class="white"><span aria-hidden="true" style="color:#FFD34E" class="fa fa-phone"></span>tel. +39 320-573-0747</p>
@@ -230,9 +244,7 @@
       </div>
     </div>
   </section>
-  <!---->
-  <!---->
-  <footer class="" id="footer" >
+  <footer id="footer" >
     <div class="container">
       <div class="row">
         <div class="col-sm-12 footer-copyright" style="text-align:center">
